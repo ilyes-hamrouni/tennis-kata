@@ -18,6 +18,7 @@ public class GameEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // entity based on teams ---> allow singles and doubles games.
 
     @ManyToMany
     @JoinTable(

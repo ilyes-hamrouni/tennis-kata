@@ -30,4 +30,6 @@ public class PointEventEntity {
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime timestamp;
+
+    // can add more stats to the history if needed.
 }

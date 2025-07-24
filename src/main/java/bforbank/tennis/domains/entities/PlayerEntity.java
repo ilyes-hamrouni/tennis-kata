@@ -18,5 +18,7 @@ public class PlayerEntity  extends BaseEntity {
     private String country;
     private int age ;
 
+    // basic fields for the demo. add more fields as you go.
+
 
 }
