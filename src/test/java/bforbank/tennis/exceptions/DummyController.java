@@ -9,7 +9,7 @@ public class DummyController {
 
     @GetMapping("/throw")
     public String throwTennisException() {
-        throw new TennisException(404, TennisErrorConstants.PLAYER_NOT_FOUND);
+        throw new TennisException(404, TennisErrorConstants.ERROR_PLAYER_NOT_FOUND);
     }
 
     @GetMapping("/throw-invalid")
