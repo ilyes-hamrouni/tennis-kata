@@ -3,15 +3,17 @@ package bforbank.tennis.domains.dtos;
 
 import bforbank.tennis.domains.enums.GameStatus;
 import bforbank.tennis.domains.enums.TeamType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.List;
 
+@Schema(description = "Game data transfer object")
 @Data
 public class GameDTO {
     private Long id;
 
-    private String stadium;
+    private Long setId;
 
     private List<PlayerDTO> teamA;
     private List<PlayerDTO> teamB;

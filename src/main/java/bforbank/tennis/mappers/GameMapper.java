@@ -13,8 +13,10 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {PointEventMapper.class})
 public interface GameMapper {
 
+    @Mapping(target = "set.id", source = "setId")
     GameEntity toEntity(GameDTO dto);
 
+    @Mapping(target = "setId", source = "set.id")
     @Mapping(target = "score", ignore = true)
     @Mapping(source = "history", target = "history")
     GameDTO toDTO(GameEntity entity);

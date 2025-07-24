@@ -18,8 +18,6 @@ public class GameEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // entity based on teams ---> allow singles and doubles games.
-
     @ManyToMany
     @JoinTable(
             name = "game_team_a_players",
@@ -56,6 +54,10 @@ public class GameEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TeamType winnerTeam;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "set_id", nullable = false)
+    private SetEntity set;
+
     @OneToMany(
             mappedBy = "game",
             cascade = CascadeType.ALL,
@@ -64,5 +66,7 @@ public class GameEntity extends BaseEntity {
     @OrderBy("sequenceNumber ASC")
     private List<PointEventEntity> history;
 
-    private String stadium;
+    @Column(name="score")
+    private String score;
+
 }
