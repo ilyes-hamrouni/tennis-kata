@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Java class files
+*.class
+
+# Maven
+target/
+
+*.iml

@@ -57,7 +57,7 @@ class PlayerServiceTest {
 
         TennisException ex = assertThrows(TennisException.class, () -> playerService.create(dto));
         assertEquals(400, ex.getErrorCode());
-        assertEquals(PLAYER_NAME_REQUIRED, ex.getErrorMessage());
+        assertEquals(ERROR_PLAYER_NAME_REQUIRED, ex.getErrorMessage());
     }
 
     @Test
@@ -68,7 +68,7 @@ class PlayerServiceTest {
 
         TennisException ex = assertThrows(TennisException.class, () -> playerService.create(dto));
         assertEquals(400, ex.getErrorCode());
-        assertEquals(PLAYER_NAME_REQUIRED, ex.getErrorMessage());
+        assertEquals(ERROR_PLAYER_NAME_REQUIRED, ex.getErrorMessage());
     }
 
     @Test
@@ -107,7 +107,7 @@ class PlayerServiceTest {
 
         TennisException ex = assertThrows(TennisException.class, () -> playerService.findById(id));
         assertEquals(404, ex.getErrorCode());
-        assertEquals(PLAYER_NOT_FOUND, ex.getErrorMessage());
+        assertEquals(ERROR_PLAYER_NOT_FOUND, ex.getErrorMessage());
     }
 
     @Test
@@ -127,6 +127,6 @@ class PlayerServiceTest {
 
         TennisException ex = assertThrows(TennisException.class, () -> playerService.delete(id));
         assertEquals(404, ex.getErrorCode());
-        assertEquals(PLAYER_NOT_FOUND, ex.getErrorMessage());
+        assertEquals(ERROR_PLAYER_NOT_FOUND, ex.getErrorMessage());
     }
 }

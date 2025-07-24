@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bforbank.tennis.exceptions.TennisErrorConstants.PLAYER_NOT_FOUND;
+import static bforbank.tennis.exceptions.TennisErrorConstants.ERROR_PLAYER_NOT_FOUND;
 
 @Service
 public class PlayerService {
@@ -41,13 +41,13 @@ public class PlayerService {
 
     public PlayerDTO findById(Long id) {
         PlayerEntity entity = playerRepository.findById(id)
-                .orElseThrow(() -> new TennisException(404,PLAYER_NOT_FOUND));
+                .orElseThrow(() -> new TennisException(404, ERROR_PLAYER_NOT_FOUND));
         return playerMapper.toDTO(entity);
     }
 
     public void delete(Long id) {
         if (!playerRepository.existsById(id)) {
-            throw new TennisException(404,PLAYER_NOT_FOUND);
+            throw new TennisException(404, ERROR_PLAYER_NOT_FOUND);
         }
         playerRepository.deleteById(id);
     }
@@ -56,7 +56,7 @@ public class PlayerService {
         if (playerDTO.getName() == null || playerDTO.getName().trim().isEmpty()) {
             throw new TennisException(
                     400,
-                    TennisErrorConstants.PLAYER_NAME_REQUIRED
+                    TennisErrorConstants.ERROR_PLAYER_NAME_REQUIRED
             );
         }
     }

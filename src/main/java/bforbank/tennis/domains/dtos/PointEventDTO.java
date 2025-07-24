@@ -9,6 +9,7 @@ public class PointEventDTO {
     private Long id;
     private Long gameId;
     private int sequenceNumber;
+    private String scoreSnapshot;
     private TeamType winningTeam;
     private LocalDateTime timestamp;
 }

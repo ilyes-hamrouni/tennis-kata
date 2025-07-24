@@ -4,5 +4,6 @@ public enum GameStatus {
     IN_PROGRESS,
     DEUCE,
     ADVANTAGE,
-    FINISHED
+    FINISHED,
+    TIE_BREAK
 }

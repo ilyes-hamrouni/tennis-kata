@@ -13,6 +13,8 @@ public class PlayerDTO {
 
     @NotBlank(message = "Player name is required")
     private String name;
+    private int age;
+    private int rank;
     private String country;
 }
 

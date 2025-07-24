@@ -27,6 +27,8 @@ public class PointEventEntity {
     @Enumerated(EnumType.STRING)
     private TeamType winningTeam;
 
+    private String scoreSnapshot;
+
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime timestamp;

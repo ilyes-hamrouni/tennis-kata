@@ -38,7 +38,7 @@ public class ScoringStrategy {
         if (game.getStatus() == GameStatus.FINISHED) {
             throw new TennisException(
                     550,
-                    TennisErrorConstants.MSG_GAME_ALREADY_FINISHED
+                    TennisErrorConstants.ERROR_MSG_GAME_ALREADY_FINISHED
             );
         }
 

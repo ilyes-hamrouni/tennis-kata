@@ -9,14 +9,13 @@ import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static bforbank.tennis.exceptions.TennisErrorConstants.PLAYER_NOT_FOUND;
+import static bforbank.tennis.exceptions.TennisErrorConstants.ERROR_PLAYER_NOT_FOUND;
 import static org.hamcrest.Matchers.*;
 import static org.instancio.Select.field;
 import static org.mockito.ArgumentMatchers.any;
@@ -76,7 +75,7 @@ class PlayerControllerTest {
 
     @Test
     void getById_shouldReturn404_whenNotFound() throws Exception {
-        when(playerService.findById(99L)).thenThrow(new TennisException(404, PLAYER_NOT_FOUND));
+        when(playerService.findById(99L)).thenThrow(new TennisException(404, ERROR_PLAYER_NOT_FOUND));
 
         mockMvc.perform(get("/api/v1/players/99"))
                 .andExpect(status().isNotFound());
@@ -90,7 +89,7 @@ class PlayerControllerTest {
 
     @Test
     void delete_shouldReturn404_whenNotFound() throws Exception {
-        doThrow(new TennisException(404, PLAYER_NOT_FOUND)).when(playerService).delete(42L);
+        doThrow(new TennisException(404, ERROR_PLAYER_NOT_FOUND)).when(playerService).delete(42L);
 
         mockMvc.perform(delete("/api/v1/players/42"))
                 .andExpect(status().isNotFound());
