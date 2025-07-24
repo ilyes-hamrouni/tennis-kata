@@ -13,7 +13,6 @@ import bforbank.tennis.mappers.GameMapper;
 import bforbank.tennis.domains.enums.GameStatus;
 import bforbank.tennis.domains.requests.CreateGameRequest;
 import bforbank.tennis.domains.requests.PointRequest;
-import bforbank.tennis.mappers.SetMapper;
 import bforbank.tennis.repositories.GameRepository;
 import bforbank.tennis.repositories.PointEventRepository;
 import bforbank.tennis.repositories.PlayerRepository;
@@ -103,9 +102,11 @@ public class GameService {
                         TennisErrorConstants.ERROR_GAME_NOT_FOUND
                 )));
 
+        scoringStrategy.applyPoint(game, request.getTeamWinner());
+        game.setScore(scoringStrategy.getScoreDisplay(game));
 
         PointEventDTO pointEvent = new PointEventDTO();
-        pointEvent.setGameId(game.getId());
+        pointEvent.setGameId(gameId);
         pointEvent.setSequenceNumber((game.getHistory()==null ?0:game.getHistory().size()) + 1);
         pointEvent.setWinningTeam(request.getTeamWinner());
         pointEvent.setScoreSnapshot(game.getScore());
@@ -115,11 +116,9 @@ public class GameService {
             game.setHistory(new ArrayList<>());
         }
         game.getHistory().add(pointEventMapper.toDto(pointEventRepository.save(mapped)));
-        scoringStrategy.applyPoint(game, request.getTeamWinner());
-        game.setScore(scoringStrategy.getScoreDisplay(game));
 
+        return   saveGame(game);
 
-        return saveGame(game);
     }
     @Transactional
     public GameDTO recordMultiplePoints(Long gameId, List<PointRequest> points) {
@@ -137,7 +136,7 @@ public class GameService {
         game.setSet(set);
         GameEntity savedGame = gameRepository.save(game);
 
-        scoreService.updateSetStatus(set.getId()); // Delegate logic to SetService
+        scoreService.updateSetStatus(set.getId());
 
         return gameMapper.toDTO(savedGame);
     }

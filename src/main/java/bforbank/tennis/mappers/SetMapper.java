@@ -6,7 +6,7 @@ import bforbank.tennis.domains.entities.SetEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {PlayerMapper.class})
+@Mapper(componentModel = "spring", uses = {PlayerMapper.class, GameMapper.class})
 public interface SetMapper {
 
     @Mapping(target = "matchId", source = "match.id")

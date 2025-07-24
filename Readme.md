@@ -37,3 +37,10 @@ http://localhost:8080/swagger-ui.html
 - ./mvnw spring-boot:run
 
 
+THERE ARE 2 FILES : match_scenario.ps1 or match_scenario.sh 
+
+you can run either file in order to simulate a full Match
+
+1 Match -> 3 Sets -> 6 games each set. 
+
+

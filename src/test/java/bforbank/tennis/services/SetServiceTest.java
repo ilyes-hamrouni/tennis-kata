@@ -7,7 +7,6 @@ import bforbank.tennis.domains.entities.GameEntity;
 import bforbank.tennis.domains.entities.MatchEntity;
 import bforbank.tennis.domains.entities.SetEntity;
 import bforbank.tennis.domains.enums.GameStatus;
-import bforbank.tennis.domains.enums.TeamType;
 import bforbank.tennis.exceptions.TennisException;
 import bforbank.tennis.mappers.GameMapper;
 import bforbank.tennis.mappers.SetMapper;
@@ -85,18 +84,6 @@ public class SetServiceTest {
         assertThrows(TennisException.class, () -> setService.createSet(1L));
     }
 
-    @Test
-    void testRecordGameWin_teamA_winsSet() {
-        set.setTeamAGamesWon(5);
-        set.setTeamBGamesWon(3);
-        when(setRepository.findById(1L)).thenReturn(Optional.of(set));
-
-        setService.recordGameWin(1L, TeamType.TEAM_A);
-
-        assertEquals(6, set.getTeamAGamesWon());
-        assertEquals(GameStatus.FINISHED, set.getStatus());
-        assertEquals(TeamType.TEAM_A, set.getWinner());
-    }
 
     @Test
     void testCreateGameInSet_success() {

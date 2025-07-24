@@ -56,13 +56,6 @@ class SetControllerTest {
                 .andExpect(jsonPath("$[1].id").value(2));
     }
 
-    @Test
-    void testRecordWin() throws Exception {
-        mockMvc.perform(post("/api/v1/sets/1/record-win/TEAM_A"))
-                .andExpect(status().isNoContent());
-
-        verify(setService, times(1)).recordGameWin(1L, TeamType.TEAM_A);
-    }
 
     @Test
     void testCreateGameInSet() throws Exception {

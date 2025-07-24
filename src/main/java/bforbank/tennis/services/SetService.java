@@ -65,28 +65,6 @@ public class SetService {
                 .collect(Collectors.toList());
     }
 
-    public void recordGameWin(Long setId, TeamType winner) {
-        SetEntity set = setRepository.findById(setId)
-                .orElseThrow(() -> new TennisException(404, ERROR_MATCH_NOT_FOUND));
-
-        if (set.getStatus() == GameStatus.FINISHED) return;
-
-        if (winner == TeamType.TEAM_A) {
-            set.setTeamAGamesWon(set.getTeamAGamesWon() + 1);
-        } else {
-            set.setTeamBGamesWon(set.getTeamBGamesWon() + 1);
-        }
-
-        int a = set.getTeamAGamesWon();
-        int b = set.getTeamBGamesWon();
-
-        if ((a >= 6 || b >= 6) && Math.abs(a - b) >= 2) {
-            set.setStatus(GameStatus.FINISHED);
-            set.setWinner(a > b ? TeamType.TEAM_A : TeamType.TEAM_B);
-        }
-
-        setRepository.save(set);
-    }
 
     public GameDTO createGameInSet(Long setId) {
         SetEntity set = setRepository.findById(setId)

@@ -34,13 +34,6 @@ public class SetController {
         return ResponseEntity.ok(setService.getSetsByMatch(matchId));
     }
 
-    @PostMapping("/{setId}/record-win/{team}")
-    @Operation(summary = "Record a game win for a team in the set")
-    public ResponseEntity<Void> recordWin(@PathVariable Long setId, @PathVariable TeamType team) {
-        setService.recordGameWin(setId, team);
-        return ResponseEntity.noContent().build();
-    }
-
 
     @PostMapping("/{setId}/games")
     public ResponseEntity<GameDTO> createGameInSet(@PathVariable Long setId) {
