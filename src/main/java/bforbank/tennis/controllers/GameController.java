@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/games")
 @Tag(name = "Game API", description = "Endpoints for creating and managing tennis games")
@@ -52,5 +54,18 @@ public class GameController {
     )
     public ResponseEntity<GameDTO> getGame(@PathVariable Long id) {
         return ResponseEntity.ok(gameService.getGame(id));
+    }
+
+
+    @PostMapping("/{id}/multiple-points")
+    @Operation(
+            summary = "Get a game by ID",
+            description = "Retrieves the full game state including score and point history"
+    )
+    public ResponseEntity<GameDTO> recordPoints(
+            @PathVariable("id") Long gameId,
+            @RequestBody List<PointRequest> points
+    ) {
+        return ResponseEntity.ok(gameService.recordMultiplePoints(gameId, points));
     }
 }

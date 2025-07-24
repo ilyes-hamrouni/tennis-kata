@@ -33,10 +33,8 @@ public class GameServiceTest {
 
     @Mock private GameRepository gameRepository;
     @Mock private PointEventRepository pointEventRepository;
-    @Mock private PlayerRepository playerRepository;
     @Mock private SetRepository setRepository;
     @Mock private GameMapper gameMapper;
-    @Mock private SetMapper setMapper;
     @Mock private PointEventMapper pointEventMapper;
     @Mock private ScoringStrategy scoringStrategy;
     @Mock private ScoreService scoreService;
